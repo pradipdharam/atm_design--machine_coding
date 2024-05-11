@@ -1,6 +1,7 @@
 from typing import Final
 
 from data import ATMState
+from state import State, ReadyState
 
 
 class ATM:
@@ -12,7 +13,11 @@ class ATM:
     """
 
     __machine_id: Final[str]
-    __atm_state: ATMState
+    __state: State
+
+    def __init__(self, machine_id):
+        self.__machine_id = machine_id
+        self.__state = ReadyState()
 
     def init(self) -> int:
         """Returns transaction number.
