@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 
+from atm import ATM
+
 
 class State(ABC):
     @abstractmethod

@@ -17,24 +17,23 @@ class ATM:
 
     def __init__(self, machine_id):
         self.__machine_id = machine_id
-        self.__state = ReadyState()
+        self.__state = ReadyState(__class__(self))
 
     def init(self) -> int:
-        transaction_id = self.__state.init()
-        self.__state = CardReadingState()
-        return transaction_id
+        """ Moving this logc to respective concreate classes of State
+        state1 --> init --> state2
+        state3 --> init --> state4
+        when __state.init() is called, it's not necessary that
+        ATM goes to one specific state CardReadingState
+        """
+        return self.__state.init()
 
-    # state1 --> init --> state2
-    # state3 --> init --> state4
-    # when __state.init() is called, it's not necessary that
-    # ATM goes to one specific state CardReadingState
 
     def cancel(self, transaction_id: int) -> bool:
         """ Sets the ATM in card ejecting state from any state
         Once the card is ejected, ATM goes to ready state.
         """
-
-        return True
+        self.__state.cancel(transaction_id)
 
     def read_card(self, card_type: str,
                   card_num: int, pin: int) -> None:
@@ -82,3 +81,6 @@ class ATM:
         if self.__atm_state == ATMState.READY:
             pass
         pass
+
+    def change_state(self, new_state: State):
+        self.__state = new_state

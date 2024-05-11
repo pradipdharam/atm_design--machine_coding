@@ -1,12 +1,19 @@
-from state import State
+from atm import ATM
+from state import State, CardEjectingState
 
 
 class CashDespensingState(State):
+    __atm: ATM
+
+    def __init__(self, atm):
+        self.__atm = atm
+
     def init(self) -> int:
         pass
 
     def cancel(self, transaction_id: int) -> bool:
-        pass
+        self.__atm.change_state(CardEjectingState(self.__atm))
+        return True
 
     def read_card(self, card_type: str,
                   card_num: int, pin: int) -> None:
