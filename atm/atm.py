@@ -42,14 +42,47 @@ class ATM:
 
     def read_card(self, card_type: str,
                   card_num: int, pin: int) -> None:
+        if self.__atm_state == ATMState.CARD_READING:
+            pass
+        if self.__atm_state == ATMState.WITHDRAWAL_DETAILS_READING:
+            pass
+        if self.__atm_state == ATMState.CASH_DISPENSING:
+            pass
+        if self.__atm_state == ATMState.READY:
+            pass
+
         return True
 
     def read_withdrawal_details(self, card_type: str,
                                 card_num: int, pin: int):
+        if self.__atm_state == ATMState.CARD_READING:
+            pass
+        if self.__atm_state == ATMState.WITHDRAWAL_DETAILS_READING:
+            pass
+        if self.__atm_state == ATMState.CASH_DISPENSING:
+            pass
+        if self.__atm_state == ATMState.READY:
+            pass
         return True
 
     def despense_cash(self, transaction_id: int) -> bool:
+        if self.__atm_state == ATMState.CARD_READING:
+            pass
+        if self.__atm_state == ATMState.WITHDRAWAL_DETAILS_READING:
+            pass
+        if self.__atm_state == ATMState.CASH_DISPENSING:
+            pass
+        if self.__atm_state == ATMState.READY:
+            pass
         return True
 
     def eject_card(self):
+        if self.__atm_state == ATMState.CARD_READING:
+            pass
+        if self.__atm_state == ATMState.WITHDRAWAL_DETAILS_READING:
+            pass
+        if self.__atm_state == ATMState.CASH_DISPENSING:
+            pass
+        if self.__atm_state == ATMState.READY:
+            pass
         pass
