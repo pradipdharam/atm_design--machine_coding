@@ -5,7 +5,7 @@ from atm import ATM
 
 class State(ABC):
     @abstractmethod
-    def init(self) -> int:
+    def init(self):
         pass
 
     @abstractmethod

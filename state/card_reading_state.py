@@ -1,5 +1,5 @@
 from atm import ATM
-from state import State, CardEjectingState
+from state import State, CardEjectingState, ReadyState
 
 
 class CardReadingState(State):
@@ -8,7 +8,7 @@ class CardReadingState(State):
     def __init__(self, atm: ATM):
         self.__atm = atm
 
-    def init(self) -> int:
+    def init(self):
         self.__atm.change_state(ReadyState(self.__atm))
 
     def cancel(self, transaction_id: int) -> bool:

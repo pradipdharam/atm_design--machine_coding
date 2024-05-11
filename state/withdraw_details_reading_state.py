@@ -8,7 +8,7 @@ class WithdrawDetailsReadingState(State):
     def __init__(self, atm):
         self.__atm = atm
 
-    def init(self) -> int:
+    def init(self):
         pass
 
     def cancel(self, transaction_id: int) -> bool:
