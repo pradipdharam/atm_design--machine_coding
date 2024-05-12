@@ -43,7 +43,7 @@ class WithdrawDetailsReadingState(State):
             return False
 
 
-    def despense_cash(self, transaction_id: int) -> bool:
+    def dispense_cash(self, transaction_id: int) -> bool:
         raise ValueError("Invalid operation")
 
     def eject_card(self):

@@ -41,3 +41,7 @@ class DBAccessor:
                                    amount: float,
                                    transaction_status: TransactionStatus):
         pass
+
+    @staticmethod
+    def mark_as_executed(transaction_id: str) -> float:
+        pass

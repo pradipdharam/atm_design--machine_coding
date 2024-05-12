@@ -9,7 +9,7 @@ class StateFactory:
         return None
 
     @staticmethod
-    def get_state(self, atm_state: ATMState, atm: ATM) -> State:
+    def get_state(atm_state: ATMState, atm: ATM) -> State:
         state = None
         if atm_state is ATMState.READY:
             state = ReadyState(atm)

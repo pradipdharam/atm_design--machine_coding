@@ -24,7 +24,7 @@ class CardReadingState(State):
                                 card_num: int, pin: int):
         pass
 
-    def despense_cash(self, transaction_id: int) -> bool:
+    def dispense_cash(self, transaction_id: int) -> bool:
         pass
 
     def eject_card(self):

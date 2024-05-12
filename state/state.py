@@ -22,7 +22,7 @@ class State(ABC):
         pass
 
     @abstractmethod
-    def despense_cash(self, transaction_id: int) -> bool:
+    def dispense_cash(self, transaction_id: int) -> bool:
         pass
 
     @abstractmethod

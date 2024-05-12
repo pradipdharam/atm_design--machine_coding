@@ -43,7 +43,7 @@ class ReadyState(State):
     def read_withdrawal_details(self, card_type: str, card_num: int, pin: int):
         raise ValueError("Invalid operation")
 
-    def despense_cash(self, transaction_id: int) -> bool:
+    def dispense_cash(self, transaction_id: int) -> bool:
         raise ValueError("Invalid operation")
 
     def eject_card(self):
