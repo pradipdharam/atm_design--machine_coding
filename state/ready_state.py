@@ -44,10 +44,10 @@ class ReadyState(State):
         raise ValueError("Invalid operation")
 
     def dispense_cash(self, transaction_id: int) -> bool:
-        raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation. Illegal state exception")
 
     def eject_card(self):
-        raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation. Illegal state exception")
 
     @property
     def state_name(self) -> ATMState:

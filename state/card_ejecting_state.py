@@ -1,6 +1,6 @@
 from atm import ATM
-from data import ATMState
-from state import State, ReadyState
+from data import ATMState, CardDetails
+from state import State, ReadyState, StateFactory
 
 
 class CardEjectingState(State):
@@ -10,25 +10,23 @@ class CardEjectingState(State):
         self.__atm = atm
 
     def init(self):
-        self.__atm.change_state(ReadyState(self.__atm))
+        raise ValueError("Invalid operation. Illegal state exception")
 
-    def cancel(self, transaction_id: int) -> bool:
-        self.__atm.change_state(ReadyState(self.__atm))
-        return True
+    def cancel_transaction(self, transaction_id: int) -> bool:
+        raise ValueError("Invalid operation. Illegal state exception")
 
-    def read_card(self, card_type: str,
-                  card_num: int, pin: int) -> None:
-        pass
+    def read_card(self, card_details: CardDetails) -> None:
+        raise ValueError("Invalid operation. Illegal state exception")
 
-    def read_withdrawal_details(self, card_type: str,
-                                card_num: int, pin: int):
-        pass
+    def read_withdrawal_details(self, card_type: str, card_num: int, pin: int):
+        raise ValueError("Invalid operation. Illegal state exception")
 
     def dispense_cash(self, transaction_id: int) -> bool:
-        pass
+        raise ValueError("Invalid operation. Illegal state exception")
 
     def eject_card(self):
-        pass
+        state_ready = StateFactory.get_state(ATMState.READY, self.__atm)
+        self.__atm.change_state(state_ready)
 
     @property
     def state_name(self) -> ATMState:

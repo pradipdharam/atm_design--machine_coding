@@ -12,7 +12,7 @@ class CashDespensingState(State):
         self.__atm = atm
 
     def init(self):
-        raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation. Illegal state exception")
 
     def cancel(self, transaction_id: str) -> bool:
         DBAccessor.cancel_transaction(transaction_id)
@@ -21,11 +21,11 @@ class CashDespensingState(State):
         return True
 
     def read_card(self, card_details: CardDetails) -> None:
-        raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation. Illegal state exception")
 
     def read_withdrawal_details(self, card_type: str,
                                 card_num: int, pin: int):
-        raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation. Illegal state exception")
 
     def dispense_cash(self, transaction_id: str) -> float:
         # retrieve the card type based on may be transaction id
@@ -37,7 +37,7 @@ class CashDespensingState(State):
         return DBAccessor.mark_as_executed(transaction_id)
 
     def eject_card(self):
-        raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation. Illegal state exception")
 
     @property
     def state_name(self) -> ATMState:

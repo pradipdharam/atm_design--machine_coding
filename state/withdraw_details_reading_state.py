@@ -2,7 +2,7 @@ from atm import ATM
 from card_manager import CardManagerFactory
 from data import ATMState, CardDetails, TransactionStatus
 from db import DBAccessor
-from state import State, CardEjectingState, StateFactory
+from state import State, StateFactory
 
 
 class WithdrawDetailsReadingState(State):
@@ -12,7 +12,7 @@ class WithdrawDetailsReadingState(State):
         self.__atm = atm
 
     def init(self):
-        raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation. Illegal state exception")
 
     def cancel_transaction(self, transaction_id: str) -> bool:
         DBAccessor.cancel_transaction(transaction_id)
@@ -21,7 +21,7 @@ class WithdrawDetailsReadingState(State):
         return True
 
     def read_card(self, card_details: CardDetails) -> None:
-        raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation. Illegal state exception")
 
     def read_withdrawal_details(self, card_details: CardDetails,
                                 amount: float, transaction_id: str):
@@ -44,10 +44,10 @@ class WithdrawDetailsReadingState(State):
 
 
     def dispense_cash(self, transaction_id: int) -> bool:
-        raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation. Illegal state exception")
 
     def eject_card(self):
-        raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation. Illegal state exception")
 
     @property
     def state_name(self) -> ATMState:
