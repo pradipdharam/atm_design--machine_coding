@@ -85,3 +85,9 @@ class ATM:
 
     def change_state(self, new_state: State):
         self.__state = new_state
+        DBAccessor.update_atm_state(self.machine_id,
+                                    new_state.state_name)
+
+    @property
+    def machine_id(self):
+        return self.__machine_id

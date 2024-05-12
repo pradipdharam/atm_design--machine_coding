@@ -1,4 +1,5 @@
 from atm import ATM
+from data import ATMState
 from state import State, CardEjectingState
 
 
@@ -28,3 +29,7 @@ class CashDespensingState(State):
 
     def eject_card(self):
         pass
+
+    @property
+    def state_name(self) -> ATMState:
+        return ATMState.CASH_DISPENSING

@@ -12,3 +12,13 @@ class DBAccessor:
         retrieve state & return
         """
         return ATMState.READY
+
+    @staticmethod
+    def create_new_transaction(self, machine_id: str) -> int:
+        """To be implemented
+        """
+        return 1
+
+    @staticmethod
+    def update_atm_state(machine_id: str, state: ATMState):
+        pass

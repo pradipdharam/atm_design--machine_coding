@@ -1,4 +1,6 @@
 from atm import ATM
+from data import ATMState
+from db import DBAccessor
 from state import State, CardReadingState, CardEjectingState
 
 
@@ -9,7 +11,12 @@ class ReadyState(State):
         self.__atm = atm
 
     def init(self):
+        transaction_id = None
+        transaction_id = DBAccessor.create_new_transaction(self.__atm.machine_id)
+        if transaction_id is None:
+            raise RuntimeError("Error creating transaction")
         self.__atm.change_state(CardReadingState(self.__atm))
+        return transaction_id
 
     def cancel(self, transaction_id: int) -> bool:
         self.__atm.change_state(CardEjectingState(self.__atm))
@@ -26,3 +33,7 @@ class ReadyState(State):
 
     def eject_card(self):
         pass
+
+    @property
+    def state_name(self) -> ATMState:
+        return ATMState.READY

@@ -22,3 +22,4 @@ class StateFactory:
             state = CardEjectingState(atm)
         else:
             raise RuntimeError("Invalid ATM state")
+        return state

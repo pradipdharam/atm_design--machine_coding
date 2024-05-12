@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
 from atm import ATM
+from data import ATMState
 
 
 class State(ABC):
@@ -26,4 +27,9 @@ class State(ABC):
 
     @abstractmethod
     def eject_card(self):
+        pass
+
+    @abstractmethod
+    @property
+    def state_name(self) -> ATMState:
         pass
