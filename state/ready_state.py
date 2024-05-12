@@ -29,13 +29,15 @@ class ReadyState(State):
                 StateFactory().get_state(ATMState.WITHDRAWAL_DETAILS_READING, self.__atm))
             self.__atm.change_state(state_withdraw_details_reading)
         else:
-            DBAccessor().disapprove_transaction(self.__atm.machine_id)
+            DBAccessor.disapprove_transaction(self.__atm.machine_id)
             # ENUM would be needed for transaction status, let's define.
             state_ready = StateFactory().get_state(ATMState.READY, self.__atm)
             self.__atm.change_state(state_ready)
 
-    def cancel(self, transaction_id: int) -> bool:
-        self.__atm.change_state(CardEjectingState(self.__atm))
+    def cancel(self, transaction_id: str) -> bool:
+        DBAccessor.cancel_transaction(transaction_id)
+        state_ready = StateFactory().get_state(ATMState.READY, self.__atm)
+        self.__atm.change_state(state_ready)
         return True
 
     def read_withdrawal_details(self, card_type: str, card_num: int, pin: int):

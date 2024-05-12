@@ -14,7 +14,7 @@ class DBAccessor:
         return ATMState.READY
 
     @staticmethod
-    def create_new_transaction(self, machine_id: str) -> int:
+    def create_new_transaction(machine_id: str) -> int:
         """To be implemented
         """
         return 1
@@ -23,9 +23,15 @@ class DBAccessor:
     def update_atm_state(machine_id: str, state: ATMState):
         pass
 
-    def persist_card_details(self, card_details: CardDetails,
+    @staticmethod
+    def persist_card_details(card_details: CardDetails,
                              machine_id: str):
         pass
 
-    def disapprove_transaction(self, machine_id: str):
+    @staticmethod
+    def disapprove_transaction(machine_id: str):
+        pass
+
+    @staticmethod
+    def cancel_transaction(transaction_id: str):
         pass
