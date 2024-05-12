@@ -1,5 +1,5 @@
 # OopCompanion:suppressRename
-from data import ATMState, CardDetails
+from data import ATMState, CardDetails, TransactionStatus
 
 
 class DBAccessor:
@@ -34,4 +34,10 @@ class DBAccessor:
 
     @staticmethod
     def cancel_transaction(transaction_id: str):
+        pass
+
+    @staticmethod
+    def persist_withdrawal_details(transaction_id: str,
+                                   amount: float,
+                                   transaction_status: TransactionStatus):
         pass

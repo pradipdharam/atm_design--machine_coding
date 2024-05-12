@@ -9,9 +9,9 @@ class CardManager(ABC):
         pass
 
     @abstractmethod
-    def validate_withdrawal(self, amount: float, transaction_id: int) -> bool:
+    def validate_withdrawal(self, amount: float, transaction_id: str) -> bool:
         pass
 
     @abstractmethod
-    def execute_withdrawal(self, transaction_id: int) -> bool:
+    def execute_withdrawal(self, transaction_id: str) -> bool:
         pass

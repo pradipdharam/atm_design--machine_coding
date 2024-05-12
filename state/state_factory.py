@@ -8,6 +8,7 @@ class StateFactory:
     def __new__(cls, *args, **kwargs):
         return None
 
+    @staticmethod
     def get_state(self, atm_state: ATMState, atm: ATM) -> State:
         state = None
         if atm_state is ATMState.READY:

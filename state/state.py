@@ -10,7 +10,7 @@ class State(ABC):
         pass
 
     @abstractmethod
-    def cancel(self, transaction_id: int) -> bool:
+    def cancel_transaction(self, transaction_id: int) -> bool:
         pass
 
     @abstractmethod
