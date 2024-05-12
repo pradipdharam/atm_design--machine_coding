@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 from atm import ATM
-from data import ATMState
+from data import ATMState, CardDetails
 
 
 class State(ABC):
@@ -14,7 +14,7 @@ class State(ABC):
         pass
 
     @abstractmethod
-    def read_card(self, card_type: str, card_num: int, pin: int) -> None:
+    def read_card(self, card_details: CardDetails) -> None:
         pass
 
     @abstractmethod

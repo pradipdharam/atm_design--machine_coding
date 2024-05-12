@@ -1,7 +1,8 @@
 from atm import ATM
-from data import ATMState
+from card_manager.card_manager_factory import CardManagerFactory
+from data import ATMState, CardDetails
 from db import DBAccessor
-from state import State, CardReadingState, CardEjectingState
+from state import State, CardReadingState, CardEjectingState, StateFactory
 
 
 class ReadyState(State):
@@ -18,12 +19,24 @@ class ReadyState(State):
         self.__atm.change_state(CardReadingState(self.__atm))
         return transaction_id
 
+    def read_card(self, card_details: CardDetails) -> None:
+        valid_card = (CardManagerFactory
+                      .get_card_manager(CardDetails.card_type)
+                      .validate_card(card_details))
+        DBAccessor.persist_card_details(card_details, self.__atm.machine_id)
+        if valid_card:
+            state_withdraw_details_reading = (
+                StateFactory().get_state(ATMState.WITHDRAWAL_DETAILS_READING, self.__atm))
+            self.__atm.change_state(state_withdraw_details_reading)
+        else:
+            DBAccessor().disapprove_transaction(self.__atm.machine_id)
+            # ENUM would be needed for transaction status, let's define.
+            state_ready = StateFactory().get_state(ATMState.READY, self.__atm)
+            self.__atm.change_state(state_ready)
+
     def cancel(self, transaction_id: int) -> bool:
         self.__atm.change_state(CardEjectingState(self.__atm))
         return True
-
-    def read_card(self, card_type: str, card_num: int, pin: int) -> None:
-        pass
 
     def read_withdrawal_details(self, card_type: str, card_num: int, pin: int):
         pass
