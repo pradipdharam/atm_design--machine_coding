@@ -1,7 +1,8 @@
 from typing import Final
 
 from data import ATMState
-from state import State, ReadyState, CardReadingState
+from db import DBAccessor
+from state import State, ReadyState, CardReadingState, StateFactory
 
 
 class ATM:
@@ -17,7 +18,7 @@ class ATM:
 
     def __init__(self, machine_id):
         self.__machine_id = machine_id
-        self.__state = ReadyState(__class__(self))
+        self.__state = StateFactory.get_state(DBAccessor.get_state(self.__machine_id))
 
     def init(self) -> int:
         """ Moving this logc to respective concreate classes of State
