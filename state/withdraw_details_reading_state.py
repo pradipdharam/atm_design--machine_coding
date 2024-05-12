@@ -42,7 +42,6 @@ class WithdrawDetailsReadingState(State):
                                                   TransactionStatus.NOT_APPROVED)
             return False
 
-
     def dispense_cash(self, transaction_id: int) -> bool:
         raise ValueError("Invalid operation. Illegal state exception")
 

@@ -2,8 +2,6 @@ from enum import Enum, auto
 
 
 # OopCompanion:suppressRename
-
-
 class ATMState(Enum):
     """Based on ATM State diagram drawn.
     """

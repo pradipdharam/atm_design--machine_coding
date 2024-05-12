@@ -5,7 +5,7 @@ from data import CardType
 class CardManagerFactory:
     def __new__(cls, *args, **kwargs):
         return None
-    
+
     @staticmethod
     def get_card_manager(self, card_type: CardType) -> CardManager:
         card_manager = None

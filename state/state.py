@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-from atm import ATM
 from data import ATMState, CardDetails
 
 

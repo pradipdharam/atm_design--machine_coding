@@ -1,8 +1,7 @@
 from atm import ATM
-from card_manager.card_manager_factory import CardManagerFactory
 from data import ATMState, CardDetails
 from db import DBAccessor
-from state import State, CardReadingState, CardEjectingState, StateFactory
+from state import State, CardReadingState, StateFactory
 
 
 class ReadyState(State):

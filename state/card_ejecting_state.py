@@ -1,6 +1,6 @@
 from atm import ATM
 from data import ATMState, CardDetails
-from state import State, ReadyState, StateFactory
+from state import State, StateFactory
 
 
 class CardEjectingState(State):
